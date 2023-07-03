@@ -1,0 +1,192 @@
+.quantity-button {
+  display: flex;
+  align-items: center;
+}
+
+/* .decrement-button,
+.increment-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.decrement-button:hover,
+.increment-button:hover {
+  background-color: #e0e0e0;
+} */
+.btn-qty{
+  border-color: #343A40 !important;
+  color: black !important;
+}
+.quantity {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+}
+
+.empty-cart p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.empty-cart img {
+  width: 400px;
+  height: auto;
+  background-color: transparent;
+}
+
+.cart-total-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.cart-amount {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navLink {
+  color: white !important;
+}
+
+.navLink :hover {
+  font-weight: bold !important;
+}
+
+.navLink.active,
+.navLink:active{
+  font-weight: bold !important;
+}
+
+.css-106c1u2-MuiBadge-badge {
+  color: black !important;
+  background-color: white !important;
+  margin: 3px 0px !important;
+}
+.table-cell{
+line-height: 2.43 !important;
+}
+.table-content{
+  margin: inherit;
+}
+
+.iconbtn{
+  color:#343A40 !important
+}
+
+.header{
+  font-weight: bold !important;
+  line-height: 5.5 !important;
+  /* text-decoration: underline !important; */
+}
+
+.table-div{
+  width: fit-content !important;
+}
+.total-caption{
+  color:#343A40 !important;
+  font-size: 18px !important;
+  padding-bottom: 0px !important;
+}
+
+.amt-caption{
+  font-size: 16px !important;
+}
+
+.btn-container{
+  display: flex !important;
+  justify-content: flex-end !important;
+  position: relative !important;
+  right: -480px !important;
+  top: 29px !important;
+}
+
+.btn-checkout{
+  position: absolute !important; 
+  right:0 !important;
+  background-color: #343A40 !important;
+  color: white !important;
+}
+
+.checkout-div{
+display: block;
+margin: auto;
+text-align: -webkit-center;
+}
+
+.sign-up-btn-div{
+  margin: 10px auto;
+}
+.btn-signup{
+  background-color: #343A40 !important;
+  color: white !important;
+  margin-bottom: 10px !important;
+}
+
+.product-main-div{
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  grid-gap: 60px !important;
+  padding: 50px !important;
+}
+.header-products{
+  display: flex  !important;
+  justify-content: center  !important;
+  align-items: center  !important;
+  margin: -10px auto !important;
+}
+.divider{
+  width: 35%  !important;
+  background: #343A40 !important;
+  display: flex !important;
+  margin: auto !important;
+  justify-content: center !important;
+  align-items: center;
+}
+
+divider-div{
+  margin: 0px !important;
+
+}
+
+.header-product{
+ 
+    font-weight: bold !important;
+    line-height: 5.5 !important;
+    letter-spacing: 1rem !important;
+    /* text-decoration: underline !important; */
+ 
+}
+
+.product-detail{
+  margin: 15px !important;
+}
+
+.btn-placeOrder{
+  background-color: #343A40 !important;
+  color: white !important;
+  margin-bottom: 10px !important;
+}
+
