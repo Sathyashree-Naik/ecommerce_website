@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./product.css";
-import Grid from "@mui/material/Grid";
+//external imports
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
@@ -10,20 +9,17 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-// import Button from '@mui/material/Button';
-// import Box from '@mui/material/Box';
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ClearIcon from "@mui/icons-material/Clear";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Tooltip from "@mui/material/Tooltip";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-
-import ConfirmDialog from "./ConfirmDialog";
-// import Paper from "@mui/material/Paper";
-
+//internal imports
 import emptycart from "./emptycart.jpg";
+import Checkout from "./Checkout";
+import ConfirmDialog from "./ConfirmDialog";
+import "./product.css";
+
 const ShoppingCart = ({
   cartList,
   setCartList,
@@ -33,36 +29,18 @@ const ShoppingCart = ({
   setPage,
 }) => {
   console.log(cartList);
+//state variables
   const [checkout, setCheckout] = useState(false);
-
-const [address,setAddress] = useState("");
-const [landmark,setLandmark] = useState("");
-const [country,setCountry] = useState("");
-const [state,setState] = useState("");
-const [city,setCity] = useState("");
-const [zipcode,setZipcode] = useState("");
-  const [errors, setErrors] = useState({
-    address: "",
-    landmark: "",
-    country: "",
-    state: "",
-    city: "",
-    zipcode: "",
-  });
-
-  
-    const [open, setOpen] = useState(false);
-    const [message,setMessage] = useState("");
-  
-   
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
+    //function to change the metadata on page change
     document.title = "Ecommerce Website | Cart";
   }, []);
 
+
+  //function to increment the product qty
   const incrementQty = (item) => {
     console.log(item);
     const updatedCart = cartList.map((cartItem) => {
@@ -72,6 +50,8 @@ const [zipcode,setZipcode] = useState("");
     });
     setCartList(updatedCart);
   };
+
+  //function to decrement the product qty
   const decrementQty = (item) => {
     console.log(item);
     if (item.quantity > 1) {
@@ -84,6 +64,7 @@ const [zipcode,setZipcode] = useState("");
     }
   };
 
+//Function to remove the product from cart
   const removeHandler = (item) => {
     const filteredList = cartList.filter(
       (cartitem) => cartitem.product_id !== item.product_id
@@ -92,6 +73,7 @@ const [zipcode,setZipcode] = useState("");
     setCartList(filteredList);
   };
 
+  //Function to add the product to wishlist
   const addToWishlist = (item) => {
     console.log(item);
 
@@ -99,6 +81,7 @@ const [zipcode,setZipcode] = useState("");
     removeHandler(item);
   };
 
+  //function to calculate the total cart amount
   const getTotalAmount = () => {
     const cartTotal = cartList.reduce(
       (accumulator, item) => accumulator + item.price * item.quantity,
@@ -107,32 +90,11 @@ const [zipcode,setZipcode] = useState("");
     return cartTotal;
   };
 
-  const orderHandler = (e) =>{
 
-     e.preventDefault();
-     if (address === "") {
-      setErrors({ address: "Address is required" });
-    } 
-   else if (landmark === "") {
-      setErrors({ landmark: "Landmark is required" });
-    } 
-   else if (country === "") {
-      setErrors({ country: "Country is required" });
-    } 
-    else if (state === "") {
-      setErrors({ state: "State is required" });
-    } 
-    else if (city === "") {
-      setErrors({ city: "City is required" });
-    } else if (zipcode === "") {
-      setErrors({ zipcode: "Zipcode is required" });
-    } else{
-      setMessage("Order Placed Successfully")
-      setOpen(true);
-      setCartList([]);
-      setCheckout(false)
-    }
-  }
+  //function to close the pop-up dialog box
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div
@@ -142,7 +104,7 @@ const [zipcode,setZipcode] = useState("");
         <>
           <div style={{ padding: "20px", display: "flex" }}>
             <div className="table-div">
-              <Typography className="header">Shopping Cart</Typography>
+              <Typography className="header" >Shopping Cart</Typography>
 
               <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="caption table">
@@ -155,13 +117,17 @@ const [zipcode,setZipcode] = useState("");
                   <TableBody>
                     {cartList.map((item) => (
                       <TableRow key={item.product_id}>
-                        <TableCell><div>  <img src={item.img} alt="product" height="65px"/></div></TableCell>
+                        <TableCell>
+                          <div>
+                            {" "}
+                            <img src={item.img} alt="product" height="65px" />
+                          </div>
+                        </TableCell>
                         <TableCell
                           component="th"
                           scope="row"
                           className="table-cell"
                         >
-                        
                           <p className="table-content"> {item.product_name}</p>
                           <p className="table-content"> {item.description}</p>
                         </TableCell>
@@ -237,203 +203,13 @@ const [zipcode,setZipcode] = useState("");
               </TableContainer>
             </div>
             {checkout && isAuthenticated ? (
-              <div>
-                <Box
-                  sx={{
-                    width: 500,
-                    maxWidth: "100%",
-                    margin: "auto",
-                  }}
-                >
-                  <div style={{ margin: "20px" }} s>
-                    <Paper
-                      sx={{
-                        p: "10px",
-                        margin: "10px auto",
-                        maxWidth: 500,
-                        flexGrow: 1,
-                      }}
-                    >
-                      <Grid container spacing={4}>
-                        <Grid item xs={12} sm container>
-                          <Grid
-                            item
-                            xs
-                            container
-                            direction="column"
-                            spacing={2}
-                          >
-                            <Grid item xs>
-                              <p
-                                style={{ fontSize: "24px", fontWeight: "bold" }}
-                              >
-                                Delivery Address
-                              </p>
-                              <div style={{ margin: "16px" }}>
-                                <div>
-                                  Name :{sessionStorage.getItem("name")}
-                                </div>
-                                <div>
-                                  Email :{sessionStorage.getItem("email")}
-                                </div>
-                                <div>
-                                  Mobile Number :
-                                  {sessionStorage.getItem("phone")}
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                {" "}
-                                <TextField
-                                 
-                                 required
-                                  fullWidth
-                                  label="Address"
-                                  id="outlined-required"
-                                  defaultValue={address}
-                                  onChange={(e) => {
-                                   setAddress(e.target.value)
-                                    setErrors({ address: "" });
-                                  }}
-                                />
-                                <div>
-                                  {" "}
-                                  <span
-                                    style={{ color: "red", fontSize: "14px" }}
-                                  >
-                                    {errors.address}
-                                  </span>
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                {" "}
-                                <TextField
-                                     required
-                                  fullWidth
-                                  label="Landmark"
-                                  id="outlined-required"
-                                  defaultValue={landmark}
-                                  onChange={(e) => {
-                                  setLandmark(e.target.value)
-                                    setErrors({ landmark: "" });
-                                  }}
-                                />
-                                <div>
-                                  {" "}
-                                  <span
-                                    style={{ color: "red", fontSize: "14px" }}
-                                  >
-                                    {errors.landmark}
-                                  </span>
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                {" "}
-                                <TextField
-                                      required
-                                  fullWidth
-                                  label="Country"
-                                  id="outlined-required"
-                                  defaultValue={country}
-                                  onChange={(e) => {
-                                 setCountry(e.target.value)
-                                    setErrors({ country: "" });
-                                  }}
-                                />
-                                <div>
-                                  {" "}
-                                  <span
-                                    style={{ color: "red", fontSize: "14px" }}
-                                  >
-                                    {errors.country}
-                                  </span>
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                {" "}
-                                <TextField
-                                     required
-                                  fullWidth
-                                  label="State"
-                                  id="outlined-required"
-                                  defaultValue={state}
-                                  onChange={(e) => {
-                                    setState(e.target.value)
-                                    setErrors({ state: "" });
-                                  }}
-                                />
-                                <div>
-                                  {" "}
-                                  <span
-                                    style={{ color: "red", fontSize: "14px" }}
-                                  >
-                                    {errors.state}
-                                  </span>
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                {" "}
-                                <TextField
-                                     required
-                                  fullWidth
-                                  label="City"
-                                  id="outlined-required"
-                                  defaultValue={city}
-                                  onChange={(e) => {
-                                    setCity(e.target.value)
-                                    setErrors({ city: "" });
-                                  }}
-                                />
-                                <div>
-                                  {" "}
-                                  <span
-                                    style={{ color: "red", fontSize: "14px" }}
-                                  >
-                                    {errors.city}
-                                  </span>
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                {" "}
-                                <TextField
-                                
-                                required
-                                  className="text-feild"
-                                  fullWidth
-                                 
-                                  id="outlined-required"
-                                   label="Zipcode"
-                                  defaultValue={zipcode}
-                                  onChange={(e) => {
-                                    setZipcode(e.target.value)
-                                    setErrors({ zipcode: "" });
-                                  }}
-                                />
-                                <div>
-                                  {" "}
-                                  <span
-                                    style={{ color: "red", fontSize: "14px" }}
-                                  >
-                                    {errors.zipcode}
-                                  </span>
-                                </div>
-                              </div>
-                              <div style={{ margin: "10px", padding: "10px" }}>
-                                <Button
-                                  variant="contained"
-                                  className="btn-placeOrder"
-                                  onClick={orderHandler}
-                                >
-                                  Place Order
-                                </Button>
-                              </div>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Paper>
-                  </div>
-                </Box>
-              </div>
+              <Checkout
+                cartList={cartList}
+                setCartList={setCartList}
+                setCheckout={setCheckout}
+                setOpen={setOpen}
+                setMessage={setMessage}
+              />
             ) : checkout && !isAuthenticated ? (
               <div className="checkout-div">
                 <Typography>
@@ -462,14 +238,8 @@ const [zipcode,setZipcode] = useState("");
           </div>
         </>
       )}
-       <ConfirmDialog
-       onClose={handleClose}
-       open={open}
-       message={message}
-
-    />
+      <ConfirmDialog onClose={handleClose} open={open} message={message} />
     </div>
-   
   );
 };
 

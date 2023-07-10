@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./product.css";
+//external imports
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -7,15 +7,20 @@ import { Button, Divider } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ClearIcon from "@mui/icons-material/Clear";
+//internal imports
 import emptywishlist from "./emptywishlist.jpg";
+import "./product.css";
 
 const WishList = ({ wishList, setWishList, addToCartHandler }) => {
   console.log(wishList);
 
   useEffect(() => {
+    //function to change the meta data on page change
     document.title = "Ecommerce Website | Wishlist";
   }, []);
 
+
+  //function to remove the product from wishlist
   const removeHandler = (item) => {
     const filteredList = wishList.filter(
       (ele) => item.product_id !== ele.product_id
@@ -23,6 +28,7 @@ const WishList = ({ wishList, setWishList, addToCartHandler }) => {
     setWishList(filteredList);
   };
 
+  //function to move the product to cart
   const moveToCartHandler = (item) => {
     const filteredList = wishList.filter(
       (ele) => item.product_id !== ele.product_id
@@ -97,7 +103,8 @@ const WishList = ({ wishList, setWishList, addToCartHandler }) => {
                         <Grid item className="product-detail checkout-div">
                           <Button
                             fullWidth
-                            className="btn-signup"
+                            variant="outlined"
+                            className="btn-outlined"
                             onClick={() => removeHandler(item)}
                           >
                             Remove &nbsp; <ClearIcon fontSize="16px" />

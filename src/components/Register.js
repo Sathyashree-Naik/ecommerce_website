@@ -1,12 +1,36 @@
 import React, { useState, useEffect } from "react";
+//external imports
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ConfirmDialog from "./ConfirmDialog";
+import { styled } from "@mui/material/styles";
+
+//funtion to change color of material ui textfield/create custom textfield
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "#343A40 ",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "#343A40 ",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "#343A40 ",
+    },
+    "&:hover fieldset": {
+      borderColor: "#343A40 ",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "#343A40 ",
+    },
+  },
+});
 
 const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
+  //state variables
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -16,11 +40,14 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
     phone: "",
   });
   const [open, setOpen] = useState(false);
-  const [message,setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
+    //Set the meta data on page change
     document.title = "Ecommerce Website | Register";
   }, []);
+
+  //Function to register the user
   const registerHandler = (e) => {
     e.preventDefault();
     if (name === "") {
@@ -35,8 +62,8 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
       sessionStorage.setItem("email", email);
       sessionStorage.setItem("phone", phone);
       sessionStorage.setItem("isAuthenticated", true);
-      setOpen(true)
-      setMessage("Registered Successfully")
+      setOpen(true);
+      setMessage("Registered Successfully");
       setName("");
       setEmail("");
       setPhone("");
@@ -45,12 +72,13 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
         email: "",
         phone: "",
       });
-      setTimeout(()=>{
+      setTimeout(() => {
         setPage("product");
-      },6000)
-      
+      }, 6000);
     }
   };
+
+  //function to close the pop-up dialog box
   const handleClose = () => {
     setOpen(false);
   };
@@ -83,11 +111,11 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
                       Register
                     </p>
                     <div style={{ margin: "10px", padding: "10px" }}>
-                      <TextField
-                      required
+                      <CssTextField
+                        id="custom-css-outlined-input"
+                        required
                         fullWidth
                         label="Name"
-                        id="outlined-required"
                         defaultValue={name}
                         onChange={(e) => {
                           setName(e.target.value);
@@ -103,11 +131,11 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
                     </div>
                     <div style={{ margin: "10px", padding: "10px" }}>
                       {" "}
-                      <TextField
-                      required
+                      <CssTextField
+                        id="custom-css-outlined-input"
+                        required
                         fullWidth
                         label="Email"
-                        id="outlined-required"
                         defaultValue={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
@@ -123,11 +151,11 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
                     </div>
                     <div style={{ margin: "10px", padding: "10px" }}>
                       {" "}
-                      <TextField
-                      required
+                      <CssTextField
+                        id="custom-css-outlined-input"
+                        required
                         fullWidth
                         label="Mobile"
-                        id="outlined-required"
                         defaultValue={phone}
                         onChange={(e) => {
                           setPhone(e.target.value);
@@ -158,12 +186,7 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
           </Paper>
         </div>
       </Box>
-      <ConfirmDialog
-       onClose={handleClose}
-       open={open}
-       message={message}
-
-    />
+      <ConfirmDialog onClose={handleClose} open={open} message={message} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import products from './data.js'
+//external imports
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -18,6 +18,7 @@ const ProductList = ({
   console.log(productList, wishList);
 
   useEffect(() => {
+    //Set the meta data on page change
     document.title = "Ecommerce Website | Products";
   }, []);
 
@@ -37,7 +38,7 @@ const ProductList = ({
       </div>
       <Grid container className="product-main-div">
         {productList.map((item, index) => (
-          <Grid container spacing={2}>
+          <Grid container spacing={2} >
             <Grid item xs={12}>
               <Grid container spacing={2}>
                 <Grid item>
@@ -82,7 +83,7 @@ const ProductList = ({
                     </Grid>
                     <Grid item className="product-detail checkout-div">
                       {item?.wishList ? (
-                        <Button fullWidth className="btn-signup">
+                        <Button fullWidth className="btn-outlined" variant="outlined">
                           Wishlisted &nbsp;
                           <FavoriteIcon fontSize="16px" />
                         </Button>
@@ -90,10 +91,11 @@ const ProductList = ({
                         <Button
                           fullWidth
                           onClick={() => addToWishlistHandler(item)}
-                          className="btn-signup"
+                          className="btn-outlined"
+                          variant="outlined"
                         >
                           Add to Wishlist &nbsp;{" "}
-                          <FavoriteIcon fontSize="16px" />
+                          <FavoriteIcon fontSize="16px"  />
                         </Button>
                       )}
                     </Grid>

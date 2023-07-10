@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+//internal exports
 import Navigation from "./components/Navigation";
 import ProductList from "./components/ProductList";
 import ShoppingCart from "./components/ShoppingCart";
@@ -6,8 +7,8 @@ import WishList from "./components/WishList";
 import products from "./components/data.js";
 import Register from "./components/Register";
 
-
 function App() {
+  //State variables
   const [page, setPage] = useState("product");
   const [productList, setProductList] = useState(products);
   const [cartList, setCartList] = useState([]);
@@ -17,15 +18,14 @@ function App() {
     sessionStorage.getItem("isAuthenticated") || false
   );
 
-  
-
+  //function to add items to cart
   const addToCartHandler = (item) => {
     console.log(item);
     const itemExists = cartList.find(
       (cartItem) => cartItem.product_id === item.product_id
     );
     console.log(itemExists);
-
+    //if item already exists in the cart increse the qty
     if (itemExists) {
       console.log("already exist");
       const updatedCart = cartList.map((cartItem) => {
@@ -42,6 +42,7 @@ function App() {
     }
   };
 
+  //function to add items to wishlist
   const addToWishlistHandler = (item) => {
     const alreadyWishlisted = wishList.some(
       (ele) => ele.product_id === item.product_id
@@ -51,13 +52,11 @@ function App() {
       const newItem = { ...item, quantity: 1 };
       setWishList([...wishList, newItem]);
       // alert("wishlisted")
-    
-      
     } else {
-      alert(" already wishlisted")
-      console.log("Wishlisted")
-
+      alert(" already wishlisted");
+      console.log("Wishlisted");
     }
+
     checkWishList();
   };
 
@@ -67,7 +66,7 @@ function App() {
     checkWishList();
   }, [page]);
 
-
+  //function to update the wishlist status
   const checkWishList = () => {
     const updatedProducts = productList.map((item) => {
       const wishListed = wishList.some(
@@ -96,7 +95,6 @@ function App() {
         isAuthenticated={isAuthenticated}
         cartSize={cartList.length}
       />
-      
 
       {page === "product" && (
         <ProductList
@@ -134,7 +132,6 @@ function App() {
           setPage={setPage}
         />
       )}
-     
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+//external imports
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -6,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+//internal imports
 import "./product.css";
 
 const ConfirmDialog = ({open,onClose,message}) => {

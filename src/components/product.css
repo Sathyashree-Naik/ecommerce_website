@@ -99,6 +99,7 @@ line-height: 2.43 !important;
 .header{
   font-weight: bold !important;
   line-height: 5.5 !important;
+  color:#343A40 !important;
   /* text-decoration: underline !important; */
 }
 
@@ -190,3 +191,9 @@ divider-div{
   margin-bottom: 10px !important;
 }
 
+.btn-outlined{
+  border-color: #343A40 !important;
+  color:#343A40 !important;
+  /* color: white !important;*/
+  margin-bottom: 10px !important; 
+}
