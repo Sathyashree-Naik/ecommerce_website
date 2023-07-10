@@ -129,6 +129,9 @@ line-height: 2.43 !important;
   right:0 !important;
   background-color: #343A40 !important;
   color: white !important;
+  text-transform: capitalize !important;
+  letter-spacing: 0.1rem !important;
+
 }
 
 .checkout-div{
@@ -144,6 +147,8 @@ text-align: -webkit-center;
   background-color: #343A40 !important;
   color: white !important;
   margin-bottom: 10px !important;
+  text-transform: capitalize !important;
+  letter-spacing: 0.1rem !important;
 }
 
 .product-main-div{
@@ -189,6 +194,8 @@ divider-div{
   background-color: #343A40 !important;
   color: white !important;
   margin-bottom: 10px !important;
+  text-transform: capitalize !important;
+  letter-spacing: 0.1rem !important;
 }
 
 .btn-outlined{
@@ -196,4 +203,27 @@ divider-div{
   color:#343A40 !important;
   /* color: white !important;*/
   margin-bottom: 10px !important; 
+  text-transform: capitalize !important;
+  letter-spacing: 0.1rem !important;
+
 }
+.checkout-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: -6px;
+}
+.checkout-data-header{
+  color:#343A40 !important;
+  font-size: 14px!important;
+  font-weight: bold;
+}
+
+.checkout-data{
+  color:#343A40;
+  font-size: 14px;
+}
+
+/* .MuiButton-contained {
+  text-transform: capitalize !important;
+} */
