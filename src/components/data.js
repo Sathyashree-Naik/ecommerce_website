@@ -43,7 +43,7 @@ const products = [
       {
         product_id: 106,
         product_name: "Airpod",
-        price: 100000,
+        price: 10000,
         description: "This is Airpod",
         img:"https://images.pexels.com/photos/3780681/pexels-photo-3780681.jpeg?auto=compress&cs=tinysrgb&w=400"
         // quantity: 5,

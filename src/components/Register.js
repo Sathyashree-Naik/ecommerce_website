@@ -50,23 +50,31 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
   //Function to register the user
   const registerHandler = (e) => {
     e.preventDefault();
+   
     if (name === "") {
-      setErrors({ name: "Name is required" });
-    } else if (email === "") {
-      setErrors({ email: "Email is required" });
-    } else if (phone === "") {
-      setErrors({ phone: "Phone is required" });
-    } else {
+  return  setErrors({ name: "Name is required" });
+    }
+    if (email === "") {
+      return setErrors({ email: "Email is required" });
+    }else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+      console.log("hello",email)
+      return setErrors({ email: "EmailId is Invalid" });
+    }
+    if (phone === "") {
+       return setErrors({ phone: "Phone is required" });
+    }
+   
       setIsAuthenticated(true);
       sessionStorage.setItem("name", name);
       sessionStorage.setItem("email", email);
       sessionStorage.setItem("phone", phone);
       sessionStorage.setItem("isAuthenticated", true);
-      setOpen(true);
-      setMessage("Registered Successfully");
       setName("");
       setEmail("");
       setPhone("");
+      setOpen(true);
+      setMessage("Registered Successfully");
+
       setErrors({
         name: "",
         email: "",
@@ -74,8 +82,8 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
       });
       setTimeout(() => {
         setPage("product");
-      }, 6000);
-    }
+      }, 3000);
+    
   };
 
   //function to close the pop-up dialog box
@@ -156,6 +164,7 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
                         required
                         fullWidth
                         label="Mobile"
+                        type="number"
                         defaultValue={phone}
                         onChange={(e) => {
                           setPhone(e.target.value);

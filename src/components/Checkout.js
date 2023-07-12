@@ -232,6 +232,7 @@ const Checkout = ({
                         required
                         fullWidth
                         label="Zipcode"
+                        type="number"
                         defaultValue={zipcode}
                         onChange={(e) => {
                           setZipcode(e.target.value);

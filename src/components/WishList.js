@@ -57,7 +57,7 @@ const WishList = ({ wishList, setWishList, addToCartHandler }) => {
           </div>
           <Grid container className="product-main-div">
             {wishList.map((item, index) => (
-              <Grid container spacing={2}>
+              <Grid container spacing={2} className="single-product-div">
                 <Grid item xs={12}>
                   <Grid container spacing={2}>
                     <Grid item>
@@ -70,7 +70,7 @@ const WishList = ({ wishList, setWishList, addToCartHandler }) => {
                       >
                         <div>
                           <div>
-                            <img src={item.img} width="260" alt="product" />
+                            <img src={item.img} width="260" alt="product" style={{padding:"15px"}} />
                           </div>
                         </div>
                         <Grid item xs className="product-detail">

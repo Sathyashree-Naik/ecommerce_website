@@ -5,8 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';  
 import Badge from '@mui/material/Badge';
-// import { Link as Routerlink, NavLink } from "react-router-dom";
-// import './Navbar.css'
+
 
 const Navigation = ({page,setPage,isAuthenticated, cartSize}) => {
   return (
@@ -20,7 +19,7 @@ const Navigation = ({page,setPage,isAuthenticated, cartSize}) => {
       {cartSize >0 ? <Badge badgeContent={cartSize}  color="primary"> <Nav.Link href="#cart"  className="navLink" onClick={()=>setPage("cart")}  >Cart</Nav.Link></Badge> : <Nav.Link href="#cart"  className="navLink" onClick={()=>setPage("cart")}  >Cart</Nav.Link>} 
           <Nav.Link href="#wishlist"  className="navLink" onClick={()=>setPage("wishlist")}    >Wishlist</Nav.Link>
           {/* <Nav.Link >Orders</Nav.Link>*/}
-          {isAuthenticated?<p style={{margin:"7px" ,color:"white"}}>{sessionStorage.getItem("name")}</p>:<Nav.Link href="#signIn"  className="navLink" onClick={()=>setPage("register")}   >SignIn</Nav.Link> }
+          {isAuthenticated?<p style={{margin:"7px" ,color:"white"}}>{sessionStorage.getItem("name").charAt(0).toUpperCase() + sessionStorage.getItem("name").slice(1)}</p>:<Nav.Link href="#signIn"  className="navLink" onClick={()=>setPage("register")}   >SignIn</Nav.Link> }
         </Nav>
       </Container>
     </Navbar>

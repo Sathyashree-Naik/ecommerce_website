@@ -26,10 +26,7 @@
   color: black !important;
 }
 .btn-qty:hover {
-  /* transition: all 0.6s ease; */
   transform: scale(1.05);
-  /* transform-origin: center; */
-  /* transform: translateY(-10px); */
 }
 .quantity {
   margin: 0 10px;
@@ -46,8 +43,11 @@
 }
 
 .empty-cart p {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 10px;
+  letter-spacing: 0.3rem !important;
+  color: #343a40;
+font-weight: bold;
 }
 
 .empty-cart img {
@@ -102,10 +102,7 @@
   color: #343a40 !important;
 }
 .iconbtn:hover {
-  /* transition: all 0.6s ease; */
   transform: scale(1.05);
-  /* transform-origin: center; */
-  /* transform: translateY(-10px); */
 }
 
 .header {
@@ -122,6 +119,7 @@
   color: #343a40 !important;
   font-size: 18px !important;
   padding-bottom: 0px !important;
+  
 }
 
 .amt-caption {
@@ -143,12 +141,10 @@
   color: white !important;
   text-transform: capitalize !important;
   letter-spacing: 0.1rem !important;
+  border-radius: 50px !important;
 }
 .btn-checkout:hover {
-  /* transition: all 0.6s ease; */
   transform: scale(1.05);
-  /* transform-origin: center; */
-  /* transform: translateY(-10px); */
 }
 
 .checkout-div {
@@ -166,6 +162,7 @@
   margin-bottom: 10px !important;
   text-transform: capitalize !important;
   letter-spacing: 0.1rem !important;
+  border-radius: 50px !important;
 }
 
 .btn-signup:hover {
@@ -217,12 +214,10 @@ divider-div {
   margin-bottom: 10px !important;
   text-transform: capitalize !important;
   letter-spacing: 0.1rem !important;
+  border-radius: 50px !important;
 }
 .btn-placeOrder:hover {
-  /* transition: all 0.6s ease; */
   transform: scale(1.05);
-  /* transform-origin: center; */
-  /* transform: translateY(-10px); */
 }
 
 .btn-outlined {
@@ -232,13 +227,11 @@ divider-div {
   margin-bottom: 10px !important;
   text-transform: capitalize !important;
   letter-spacing: 0.1rem !important;
+  border-radius: 50px !important;
 }
 
 .btn-outlined:hover {
-  /* transition: all 0.6s ease; */
   transform: scale(1.05);
-  /* transform-origin: center; */
-  /* transform: translateY(-10px); */
 }
 
 .checkout-details {
@@ -261,3 +254,8 @@ divider-div {
 /* .MuiButton-contained {
   text-transform: capitalize !important;
 } */
+
+
+.single-product-div:hover{
+  transform: scale(1.02);
+}

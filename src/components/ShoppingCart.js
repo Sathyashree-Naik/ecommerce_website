@@ -102,7 +102,7 @@ const ShoppingCart = ({
     >
       {cartList.length ? (
         <>
-          <div style={{ padding: "20px", display: "flex" }}>
+          <div style={{ padding: "20px", display: "flex" ,flexWrap:"wrap"}}>
             <div className="table-div">
               <Typography className="header" >Shopping Cart</Typography>
 
