@@ -62,7 +62,7 @@ const ProductList = ({
                       >
                         {item.product_name}
                       </Typography>
-                      <Typography variant="body2" gutterBottom>
+                      <Typography variant="body2" className="description-div" gutterBottom>
                         {item.description}
                       </Typography>
                     </Grid>

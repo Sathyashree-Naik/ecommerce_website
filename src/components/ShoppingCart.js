@@ -33,6 +33,7 @@ const ShoppingCart = ({
   const [checkout, setCheckout] = useState(false);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [totalAmt,setTotalAmt] = useState(0);
 
   useEffect(() => {
     //function to change the metadata on page change
@@ -82,11 +83,13 @@ const ShoppingCart = ({
   };
 
   //function to calculate the total cart amount
+  let cartTotal=0;
   const getTotalAmount = () => {
-    const cartTotal = cartList.reduce(
+   cartTotal = cartList.reduce(
       (accumulator, item) => accumulator + item.price * item.quantity,
       0
     );
+    // setTotalAmt(cartTotal);
     return cartTotal;
   };
 
@@ -209,6 +212,7 @@ const ShoppingCart = ({
                 setCheckout={setCheckout}
                 setOpen={setOpen}
                 setMessage={setMessage}
+                totalAmt={cartTotal}
               />
             ) : checkout && !isAuthenticated ? (
               <div className="checkout-div">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 //external imports
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
@@ -36,6 +36,7 @@ const Checkout = ({
   setCheckout,
   setOpen,
   setMessage,
+  totalAmt
 }) => {
   //state variable
   const [address, setAddress] = useState("");
@@ -123,6 +124,53 @@ const Checkout = ({
                         <p className="checkout-data-header">Mobile:&nbsp; </p>
                         <p className="checkout-data">{ sessionStorage.getItem("phone")}</p>
                       </div>
+                    </div>
+                    <div>
+                      <div >
+                        <p style={{
+                        color: "#343A40",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        margin:"19px"
+                        // margin: "auto",
+                        // display: "flex",
+                        // justifyContent: "center",
+                      }}>Order Summary</p>
+                        <Divider/>
+                      </div>
+                      <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                      <p style={{
+                        color: "#343A40",
+                        fontSize: "14px",
+                        // fontWeight: "bold",
+                        margin:"19px"
+                        // margin: "auto",
+                        // display: "flex",
+                        // justifyContent: "center",
+                      }}>Total Amount</p>
+                      <p style={{
+                        color: "#343A40",
+                        fontSize: "18px",
+                        margin:"19px"
+                        // fontWeight: "bold",
+                        // margin: "auto",
+                        // display: "flex",
+                        // justifyContent: "center",
+                      }}>Rs. &nbsp;{totalAmt}</p>
+                      </div>
+                    </div>
+                    <Divider/>
+                    <div>
+                      
+                    <p style={{
+                        color: "#343A40",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        margin:"19px"
+                        // margin: "auto",
+                        // display: "flex",
+                        // justifyContent: "center",
+                      }}>Shipping Address</p>
                     </div>
                     <div style={{ margin: "10px", padding: "10px" }}>
                       {" "}
