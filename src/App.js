@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 //internal exports
 import Navigation from "./components/Navigation";
 import ProductList from "./components/ProductList";
@@ -11,8 +12,12 @@ function App() {
   //State variables
   const [page, setPage] = useState("product");
   const [productList, setProductList] = useState(products);
-  const [cartList, setCartList] = useState([]);
-  const [wishList, setWishList] = useState([]);
+  const [cartList, setCartList] = useState(
+    JSON.parse(sessionStorage.getItem("cartItem")) || []
+  );
+  const [wishList, setWishList] = useState(
+    JSON.parse(sessionStorage.getItem("wishlist")) || []
+  );
   // const [orderList, setOrderList] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(
     sessionStorage.getItem("isAuthenticated") || false
@@ -35,10 +40,13 @@ function App() {
       });
       console.log(updatedCart);
       setCartList(updatedCart);
+      sessionStorage.setItem("cartItem", JSON.stringify(updatedCart));
     } else {
       console.log("new product");
       const newProduct = { ...item, quantity: 1 };
+      const updatedCart = [...cartList, newProduct];
       setCartList([...cartList, newProduct]);
+      sessionStorage.setItem("cartItem", JSON.stringify(updatedCart));
     }
   };
 
@@ -50,7 +58,9 @@ function App() {
     console.log(alreadyWishlisted);
     if (!alreadyWishlisted) {
       const newItem = { ...item, quantity: 1 };
-      setWishList([...wishList, newItem]);
+      const updatedWishlist = [...wishList, newItem];
+      setWishList(updatedWishlist);
+      sessionStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
       // alert("wishlisted")
     } else {
       alert(" already wishlisted");
@@ -63,7 +73,10 @@ function App() {
   console.log(cartList);
 
   useEffect(() => {
+    console.log("hello")
     checkWishList();
+    sessionStorage.setItem("products", JSON.stringify(productList));
+    // sessionStorage.getItem(JSON.parse("products"));
   }, [page]);
 
   //function to update the wishlist status
@@ -75,6 +88,7 @@ function App() {
 
       return { ...item, wishList: wishListed };
     });
+    sessionStorage.setItem("products", JSON.stringify(updatedProducts));
     setProductList(updatedProducts);
 
     const updatedCart = cartList.map((item) => {
@@ -84,6 +98,7 @@ function App() {
 
       return { ...item, wishList: wishListed };
     });
+    sessionStorage.setItem("cartItem", JSON.stringify(updatedCart));
     setCartList(updatedCart);
   };
 
@@ -95,7 +110,60 @@ function App() {
         isAuthenticated={isAuthenticated}
         cartSize={cartList.length}
       />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProductList
+              addToCartHandler={addToCartHandler}
+              productList={productList}
+              setProductList={setProductList}
+              wishList={wishList}
+              setWishList={setWishList}
+              addToWishlistHandler={addToWishlistHandler}
+            />
+          }
+        />
 
+        <Route
+          path="/cart"
+          element={
+            <ShoppingCart
+              cartList={cartList}
+              setCartList={setCartList}
+              page={page}
+              setPage={setPage}
+              addToWishlistHandler={addToWishlistHandler}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+
+        <Route
+          path="/wishlist"
+          element={
+            <WishList
+              wishList={wishList}
+              setWishList={setWishList}
+              addToCartHandler={addToCartHandler}
+            />
+          }
+        />
+
+        <Route
+          path="/register"
+          element={
+            <Register
+              isAuthenticated={isAuthenticated}
+              setIsAuthenticated={setIsAuthenticated}
+              page={page}
+              setPage={setPage}
+            />
+          }
+        />
+      </Routes>
+
+      {/* 
       {page === "product" && (
         <ProductList
           addToCartHandler={addToCartHandler}
@@ -131,7 +199,7 @@ function App() {
           page={page}
           setPage={setPage}
         />
-      )}
+      )} */}
     </>
   );
 }

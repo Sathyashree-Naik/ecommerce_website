@@ -20,6 +20,7 @@ const ProductList = ({
   useEffect(() => {
     //Set the meta data on page change
     document.title = "Ecommerce Website | Products";
+    // setProductList(JSON.parse(sessionStorage.getItem("products")))
   }, []);
 
   console.log(productList, wishList);

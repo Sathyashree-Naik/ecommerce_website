@@ -73,7 +73,9 @@ const Checkout = ({
       setMessage("Order Placed Successfully");
       setOpen(true);
       setCartList([]);
+      
       setCheckout(false);
+      sessionStorage.setItem("cartItem",JSON.stringify([]));
     }
   };
 

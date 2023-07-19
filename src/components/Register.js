@@ -7,6 +7,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import ConfirmDialog from "./ConfirmDialog";
 import { styled } from "@mui/material/styles";
+import { useNavigate } from 'react-router-dom';
 
 //funtion to change color of material ui textfield/create custom textfield
 const CssTextField = styled(TextField)({
@@ -41,7 +42,8 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
   });
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     //Set the meta data on page change
     document.title = "Ecommerce Website | Register";
@@ -82,6 +84,7 @@ const Register = ({ isAuthenticated, setIsAuthenticated, page, setPage }) => {
       });
       setTimeout(() => {
         setPage("product");
+        navigate('/cart')
       }, 3000);
     
   };

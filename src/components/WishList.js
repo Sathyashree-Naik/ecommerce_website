@@ -26,6 +26,7 @@ const WishList = ({ wishList, setWishList, addToCartHandler }) => {
       (ele) => item.product_id !== ele.product_id
     );
     setWishList(filteredList);
+    sessionStorage.setItem("wishlist",JSON.stringify(filteredList));
   };
 
   //function to move the product to cart
@@ -34,6 +35,7 @@ const WishList = ({ wishList, setWishList, addToCartHandler }) => {
       (ele) => item.product_id !== ele.product_id
     );
     setWishList(filteredList);
+    sessionStorage.setItem("wishlist",JSON.stringify(filteredList));
 
     addToCartHandler(item);
   };

@@ -79,11 +79,13 @@ font-weight: bold;
 
 .navLink :hover {
   font-weight: bold !important;
+  text-decoration: none !important;
 }
 
 .navLink.active,
 .navLink:active {
   font-weight: bold !important;
+  text-decoration: none !important;
 }
 
 .css-106c1u2-MuiBadge-badge {
@@ -276,3 +278,22 @@ divider-div {
   text-overflow: ellipsis !important;
   width: 200px !important;
 }
+
+a:-webkit-any-link {
+  /* color: -webkit-link !important;
+  cursor: pointer !important; */
+ 
+  text-decoration: none !important;
+}
+
+.nav-item :hover{
+  color: white !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
+
+.navbar-light .navbar-nav .active >.nav-link {
+ font-weight: bold;
+ /* text-decoration: none !important; */
+}
+

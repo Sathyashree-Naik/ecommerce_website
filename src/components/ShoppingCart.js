@@ -14,6 +14,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Tooltip from "@mui/material/Tooltip";
+import { useNavigate } from 'react-router-dom';
 //internal imports
 import emptycart from "./emptycart.jpg";
 import Checkout from "./Checkout";
@@ -34,11 +35,14 @@ const ShoppingCart = ({
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [totalAmt,setTotalAmt] = useState(0);
+  let navigate = useNavigate();
 
   useEffect(() => {
     //function to change the metadata on page change
     document.title = "Ecommerce Website | Cart";
   }, []);
+
+
 
 
   //function to increment the product qty
@@ -50,6 +54,7 @@ const ShoppingCart = ({
         : cartItem;
     });
     setCartList(updatedCart);
+    sessionStorage.setItem("cartItem",JSON.stringify(updatedCart));
   };
 
   //function to decrement the product qty
@@ -61,6 +66,7 @@ const ShoppingCart = ({
           ? { ...cartItem, quantity: cartItem.quantity - 1 }
           : cartItem;
       });
+      sessionStorage.setItem("cartItems",JSON.stringify(updatedCart));
       setCartList(updatedCart);
     }
   };
@@ -72,6 +78,7 @@ const ShoppingCart = ({
     );
     console.log(filteredList);
     setCartList(filteredList);
+    sessionStorage.setItem("cartItem",JSON.stringify(filteredList));
   };
 
   //Function to add the product to wishlist
@@ -223,7 +230,10 @@ const ShoppingCart = ({
                   <Button
                     variant="contained"
                     className="btn-signup"
-                    onClick={() => setPage("register")}
+                    onClick={() => {
+                      setPage("register")
+                     navigate("/register")
+                    }}
                   >
                     Sign Up
                   </Button>
